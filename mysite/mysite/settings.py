@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,13 +32,33 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Добавлено приложение Секций/Статей
+    'sections.apps.SectionsConfig',
+
+    # Стандартные настройки проекта
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Установка редактора HTML ckeditor
+    'ckeditor',
+    'ckeditor_uploader',
 ]
+
+# Параметры для ckeditor где будут хранится файлы
+# загруженные через редактор
+CKEDITOR_CONFIGS = {
+    'default': {
+     'toolbar': 'None'
+    },
+}
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,8 +96,17 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # Настройки для SQLite
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+
+        # Настройки для MySQL
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django-lessons',
+        'USER': 'serg',
+        'PASSWORD': '11',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
@@ -103,7 +133,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# en-us - Английский ru-us - Русский
+LANGUAGE_CODE = 'ru-us'
 
 TIME_ZONE = 'UTC'
 
