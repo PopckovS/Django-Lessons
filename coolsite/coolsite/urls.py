@@ -16,6 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# Импорт видов от приложения women
+from women.views import index
+
 urlpatterns = [
+    # Админ панель сайта
     path('admin/', admin.site.urls),
+
+    # Подключаем приложение women
+    path('women/', index),
 ]
