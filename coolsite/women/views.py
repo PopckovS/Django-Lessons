@@ -16,4 +16,6 @@ def index(request):
     return HttpResponse("Привет мир !")
 
 
+def categories(request):
+    return HttpResponse("<h1>Статья первой категории !</h1>")
 
