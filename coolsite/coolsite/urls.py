@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Подключаем URL для приложения women
-    path('women/', include('women.urls'))
+    # path('women/', include('women.urls'))
+    path('', include('women.urls'))
 ]

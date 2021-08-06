@@ -16,6 +16,29 @@ def index(request):
     return HttpResponse("Привет мир !")
 
 
-def categories(request):
-    return HttpResponse("<h1>Статья первой категории !</h1>")
+def categories(request, catID: int):
+    """
+    Отображает категорию
+
+    catID - номер категории, параметр URL строки
+    """
+    if request.GET:
+        print(request.GET)
+
+    if request.POST:
+        print(request.POST)
+
+    return HttpResponse(f"<h1>Статья категории {catID}</h1>")
+
+
+def archive(request, year):
+    """
+    """
+    return HttpResponse(f"<h1>Архив по годам {year}</h1>")
+
+
+
+
+
+
 
