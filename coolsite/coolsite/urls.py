@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from women.views import *
+
 urlpatterns = [
     # Админ панель сайта
     path('admin/', admin.site.urls),
@@ -24,3 +26,5 @@ urlpatterns = [
     # path('women/', include('women.urls'))
     path('', include('women.urls'))
 ]
+# faulthandler = pageNotFound
+handler404 = pageNotFound
