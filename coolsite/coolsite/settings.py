@@ -78,10 +78,21 @@ WSGI_APPLICATION = 'coolsite.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+    # Подключение к SQLite
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+
+    # Подключение к PostgreSQL
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'db-django',
+    #     'USER': 'serg',
+    #     'PASSWORD': '11',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '8000',
+    # }
 }
 
 

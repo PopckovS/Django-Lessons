@@ -33,11 +33,7 @@ def categories(request, catID: int):
 
 def archive(request, year):
     if int(year) > 2021:
-        return redirect('/', permanent=True)
-
-    # if int(year) > 2021:
-    #     raise Http404()
-
+        return redirect('home', permanent=True)
     return HttpResponse(f"<h1>Архив по годам {year}</h1>")
 
 
