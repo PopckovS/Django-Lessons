@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-82fyiftc_br64qyh3kj_%d4pyp-fq^6f9i!qa+)c_0+^be!iw='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # Наши приложения
     'women.apps.WomenConfig',
+    'polls.apps.PollsConfig',
 ]
 
 MIDDLEWARE = [
@@ -118,7 +119,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -132,7 +134,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# Определяем обе переменные и собираем в директорию static командой
+# python3 manage.py collectstatic
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
+
+# 128 static files copied to '/var/www/Django-Lessons/coolsite/static'.
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

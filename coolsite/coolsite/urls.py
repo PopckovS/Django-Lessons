@@ -23,8 +23,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Подключаем URL для приложения women
-    # path('women/', include('women.urls'))
-    path('', include('women.urls'))
+    path('women', include('women.urls')),
+
+    # Приложение pools
+    path('polls', include('polls.urls'))
 ]
+
 # faulthandler = pageNotFound
 handler404 = pageNotFound

@@ -13,7 +13,7 @@ def index(request):
 
     return - на выходе должен быть экземпляр класса HttpResponse
     """
-    return HttpResponse("Привет мир !")
+    return HttpResponse("Women главная страница")
 
 
 def categories(request, catID: int):
