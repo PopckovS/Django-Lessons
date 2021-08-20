@@ -1,7 +1,8 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
-# Create your views here.
+from coolsite.settings import BASE_DIR
+import os
 
 
 def index(request):
@@ -13,13 +14,16 @@ def index(request):
 
     return - на выходе должен быть экземпляр класса HttpResponse
     """
-    return HttpResponse("Women главная страница")
+    response = f'Women главная страница. <br>'
+    response += f'BASE_DIR = {BASE_DIR} <br>'
+    response += f'os.path.join(BASE_DIR, "media") = {os.path.join(BASE_DIR, "media")} <br>'
+
+    return HttpResponse(response)
 
 
 def categories(request, catID: int):
     """
     Отображает категорию
-
     catID - номер категории, параметр URL строки
     """
     if request.GET:
@@ -38,8 +42,6 @@ def archive(request, year):
 
 
 def pageNotFound(request, exception):
+    """Отображение страницы ошибок"""
     return HttpResponseNotFound("<h1>Страница не найдена, ошибка 404</h1>")
-
-
-
 
