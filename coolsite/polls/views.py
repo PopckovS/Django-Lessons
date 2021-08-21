@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 # Импортируем модель Вопросов
 from .models import Question, Choice
@@ -9,29 +10,15 @@ def index(request):
     Главный метод, показывает все вопросы.
     URL: /
     """
-    # latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    # print(latest_question_list)
-    # output = ', '.join([q.question_text for q in latest_question_list])
 
-    # Удалить все обьекты(записи) из таблицы Question
-    # output = Question.objects.all().delete()
+    all_questions = Question.objects.all()
 
-    # Получить все обьекты из таблицы Question
-    questions = Question.objects.all()
-    # output = ', '.join([q.question_text for q in questions])
+    context = {
+        'var_title': 'Главная страница для приложения polls',
+        'latest_question_list': all_questions,
+    }
 
-    output = ''
-    for question in questions:
-        output += "Текст вопроса = {question_text} " \
-                  "Дата публикации = {pub_date}" \
-                  "<br>".format(
-            question_text=question.question_text,
-            pub_date=question.pub_date
-        )
-
-    return HttpResponse("Показывает все вопросы <hr> {output}".format(
-        output=output
-    ))
+    return render(request, 'polls/index.html', context=context)
 
 
 def detail(request, question_id: int):
@@ -60,3 +47,33 @@ def vote(request, question_id: int):
     URL: /<question_id>/vote
     """
     return HttpResponse(f"Голосование по вопросу {question_id}")
+
+
+    # Получить 5 последних записей по дате из модели Question
+    # latest_question_list = Question.objects.order_by('-pub_date')[:5]
+
+    # ТЕСТ
+    # latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    # print(latest_question_list)
+    # output = ', '.join([q.question_text for q in latest_question_list])
+
+    # Удалить все обьекты(записи) из таблицы Question
+    # output = Question.objects.all().delete()
+
+    # Получить все обьекты из таблицы Question
+    # output = ', '.join([q.question_text for q in questions])
+
+    # РАБОЧЕЕ
+    # questions = Question.objects.all()
+    # output = ''
+    # for question in questions:
+    #     output += "Текст вопроса = {question_text} " \
+    #               "Дата публикации = {pub_date}" \
+    #               "<br>".format(
+    #         question_text=question.question_text,
+    #         pub_date=question.pub_date
+    #     )
+    #
+    # return HttpResponse("Показывает все вопросы <hr> {output}".format(
+    #     output=output
+    # ))

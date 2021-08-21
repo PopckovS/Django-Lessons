@@ -6,26 +6,28 @@ import os
 
 
 def index(request):
-    """
-    Представление для обработки главной страницы.
+    """Главная страница опросов"""
 
-    request - ссылка на класс HttpRequest с инфой о запросе, сессии,
-     куки,, заголовки и тд..
+    context = {
+        'title': 'Women Главная страница',
+        'menu': ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+    }
 
-    return - на выходе должен быть экземпляр класса HttpResponse
-    """
-    response = f'Women главная страница. <br>'
-    response += f'BASE_DIR = {BASE_DIR} <br>'
-    response += f'os.path.join(BASE_DIR, "media") = {os.path.join(BASE_DIR, "media")} <br>'
+    return render(request, 'women/index.html', context=context)
 
-    return HttpResponse(response)
+
+def about(request):
+    """О приложении"""
+
+    context = {
+        'title': 'Women о сайте'
+    }
+
+    return render(request, 'women/about.html', context=context)
 
 
 def categories(request, catID: int):
-    """
-    Отображает категорию
-    catID - номер категории, параметр URL строки
-    """
+    """Отображает категорию"""
     if request.GET:
         print(request.GET)
 
