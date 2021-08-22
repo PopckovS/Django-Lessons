@@ -10,14 +10,11 @@ def index(request):
     Главный метод, показывает все вопросы.
     URL: /
     """
-
     all_questions = Question.objects.all()
-
     context = {
         'var_title': 'Главная страница для приложения polls',
-        'latest_question_list': all_questions,
+        'all_questions': all_questions
     }
-
     return render(request, 'polls/index.html', context=context)
 
 

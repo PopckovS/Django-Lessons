@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
+{% extends 'women/base.html' %}
 
-<ul>
-{% for line in menu %}
-    <li>{{ line }}</li>
-{% endfor %}
+{% block content %}
+    <ul class="list-articles">
+        {% for p in posts %}
+            <li>
+                <h2>{{p.title}}</h2>
+                {% autoescape on %}
+                    {{p.content|linebreaks|truncatewords:50}}
+                {% endautoescape %}
+                <div class="clear"></div>
+                <p class="link-read-post">
+                    <a href="#">Читать пост</a>
+                </p>
+            </li>
+        {% endfor %}
 </ul>
-
-</body>
-</html>
+{% endblock %}
