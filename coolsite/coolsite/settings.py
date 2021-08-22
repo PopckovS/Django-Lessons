@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Наши приложения
     'women.apps.WomenConfig',
     'polls.apps.PollsConfig',
+    'python.apps.PythonConfig',
 ]
 
 MIDDLEWARE = [

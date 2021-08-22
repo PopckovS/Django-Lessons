@@ -26,11 +26,15 @@ urlpatterns = [
     # Админ панель сайта
     path('admin/', admin.site.urls),
 
-    # Подключаем URL для приложения women
+    # Приложение women
     path('women/', include('women.urls')),
 
     # Приложение pools
-    path('polls/', include('polls.urls'))
+    path('polls/', include('polls.urls')),
+
+    # Приложение python
+    path('python/', include('python.urls'))
+
 ]
 
 if settings.DEBUG:
