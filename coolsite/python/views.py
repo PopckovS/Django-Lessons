@@ -3,6 +3,9 @@ from django.shortcuts import render
 
 from .models import python_lesson, python_section
 
+from coolsite import settings
+from django.core.mail import send_mail
+
 menu = ['/python/', '/python/section/', '/python/section/5']
 
 
@@ -22,6 +25,13 @@ def section(request, section):
         'menu': menu,
         'lessons': lessons
     }
+    send_mail(
+        'Hello World !',
+        'body of message',
+        settings.EMAIL_HOST_USER,
+        ['popckovM5@yandex.ru'],
+        fail_silently=False,
+    )
     return render(request, 'python/section.html', context=context)
 
 
