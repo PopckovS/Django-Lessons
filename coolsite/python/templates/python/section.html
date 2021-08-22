@@ -2,4 +2,17 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
+
+    {% if lessons %}
+        <ul>
+            {% for lesson in lessons %}
+                <h1>{{ lesson.title }}</h1>
+                <p>Дата публикации: {{ lesson.time_create }}</p>
+                {{ lesson.content | safe }}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Уроков по данному разделу нет</p>
+    {% endif %}
+
 {% endblock content %}

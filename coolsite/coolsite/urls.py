@@ -33,15 +33,17 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
 
     # Приложение python
-    path('python/', include('python.urls'))
+    path('python/', include('python.urls')),
 
+    # url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
+# Установка директорий для скачивания статических файлов дял dev/prod
 if settings.DEBUG:
-#     # urlpatterns += static(
-#     #     settings.STATIC_URL,
-#     #     document_root=settings.STATIC_ROOT
-#     # )
+    urlpatterns += static(
+        settings.STATIC_URL,document_root=settings.STATIC_ROOT
+    )
     urlpatterns += static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )

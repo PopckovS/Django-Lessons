@@ -45,7 +45,31 @@ INSTALLED_APPS = [
     'women.apps.WomenConfig',
     'polls.apps.PollsConfig',
     'python.apps.PythonConfig',
+
+    # Подключение html-редактора ckeditor
+    'ckeditor',
+    'ckeditor_uploader',
 ]
+
+# Зависимость визуального редактора ckeditor
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+# Настройки визуального редактора-ckeditor
+CKEDITOR_CONFIGS = {
+ 'default': {
+ 'toolbar': 'Full',
+ 'height': 500,
+ 'width': 900,
+ 'extraPlugins':'codesnippet',
+ },
+}
+
+# Константы для настройки визуального редактора-ckeditor
+CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_BROWSE_SHOW_DIRS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
