@@ -7,6 +7,7 @@
                 <h2>{{p.title}}</h2>
                 {% autoescape on %}
                     {{p.content|linebreaks|truncatewords:50}}
+{#                    {{p.content}}#}
                 {% endautoescape %}
                 <div class="clear"></div>
                 <p class="link-read-post">

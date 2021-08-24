@@ -1,0 +1,37 @@
+{% extends 'python/base.html' %}
+
+{# Интегрируется в родительский шаблон #}
+{% block content %}
+
+    Заголовок: {{ title }}
+
+<hr><hr><hr>
+
+{#    <form action="/your-name/" method="post">#}
+    <form action="/python/form_1/" method="post">
+        <p>Сгенерированная форма отправки</p>
+
+        {% csrf_token %}
+        {{ form }}
+
+        <input type="submit" value="Submit">
+    </form>
+
+<hr><hr><hr>
+
+    {#  Тестовая ручная форма отправки  #}
+    <form action="/python/form_1/" method="post">
+        <p>Ручная форма отправки</p>
+        {% csrf_token %}
+        <label for="your_name">Your name: </label>
+        <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+
+        <input type="submit" value="OK">
+    </form>
+
+
+{% endblock content %}
+
+
+
+

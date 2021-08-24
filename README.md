@@ -1,6 +1,7 @@
-## Django-Lessons
-Учебный проект, изучаю Django, Html+CSS были взяты с разных бесплатных
-шаблонов.
+Django-Lessons
+---
+
+Учебный проект, изучаю Django.
 
 Для запуска примените миграции:
 
@@ -11,13 +12,16 @@
 
      python3 manage.py runserver
 
+---
 
-Для Django есть множество полезных модулей, которых нету для Flask,
-есть модуль для добавления HTML редактора, для Flask я такого модуля не 
-нашел:
+Полезные материалы
 
 [Установка ckeditor в Django](http://djangonauts.ru/content/ustanovka-vizualnogo-redaktora-ckeditor-v-django/)
 
-    
+[Sentry-sdk](https://docs.sentry.io/platforms/python/guides/django/) - для отладки проектов
 
+[Django REST framework](https://www.django-rest-framework.org/) - для написания REST API
 
+[Django-extensions](https://django-extensions.readthedocs.io/en/stable/index.html) - полезный функции для работы 
+
+[Django-adminactions](https://django-adminactions.readthedocs.io/en/latest/) - Экспорт данных из админки в XSL, CSV, Fixture. 
