@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
-# from django.conf import settings
 from coolsite import settings
 
 from women.views import *
@@ -27,15 +26,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Приложение women
-    path('women/', include('women.urls')),
+    # path('women/', include('women.urls')),
+    path('', include('women.urls')),
 
     # Приложение pools
-    path('polls/', include('polls.urls')),
+    # path('polls/', include('polls.urls')),
 
     # Приложение python
-    path('python/', include('python.urls')),
+    # path('python/', include('python.urls')),
 
-    # url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    # Путь к html-редактору что подключен к админке
     path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 

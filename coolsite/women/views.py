@@ -1,20 +1,29 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
-from .models import Women, Product
+from .models import Women,  drop_category, category
 
-from coolsite.settings import BASE_DIR
-import os
+menu = [
+        {'title': 'О сайте',         'url_name': 'about'},
+        {'title': 'Добавить статью', 'url_name': 'add_page'},
+        {'title': 'Обратная связь',  'url_name': 'contact'},
+        {'title': 'Войти',           'url_name': 'login'},
+    ]
 
 
 def index(request):
-    """Главная страница опросов"""
+    """Главная страница"""
     posts = Women.objects.all()
     context = {
-        'title': 'Women Главная страница',
+        'title': 'Главная страница Women',
         'posts': posts,
-        'menu': ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+        'menu': menu
     }
+    drop_category()
+    # women_1 = Women.objects.get(pk=1)
+    # women_1.cat = None
+    # women_1.save()
+
     return render(request, 'women/index.html', context=context)
 
 
@@ -22,24 +31,27 @@ def about(request):
     """О приложении"""
     context = {
         'title': 'Women о сайте',
-        'menu': ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+        'menu': menu
     }
     return render(request, 'women/about.html', context=context)
 
 
-def categories(request, catID: int):
-    """Отображает категорию"""
-    if request.GET:
-        print(request.GET)
-    if request.POST:
-        print(request.POST)
-    return HttpResponse(f"<h1>Статья категории {catID}</h1>")
+def contact(request):
+    """Контакты"""
+    return HttpResponse('contact')
 
 
-def archive(request, year):
-    if int(year) > 2021:
-        return redirect('home', permanent=True)
-    return HttpResponse(f"<h1>Архив по годам {year}</h1>")
+def login(request):
+    """Логин"""
+    return HttpResponse('login')
+
+
+def add_page(request):
+    return HttpResponse('add_page')
+
+
+def show_post(request, post_id):
+    return HttpResponse(f'show_post post_id = {post_id}')
 
 
 def pageNotFound(request, exception):
