@@ -1,7 +1,10 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
-from .models import Women,  drop_category, category
+from .models import *
+# from .models import Women
+# from .models import category
+# from .models import drop_category, create_category
 
 menu = [
         {'title': 'О сайте',         'url_name': 'about'},
@@ -19,10 +22,16 @@ def index(request):
         'posts': posts,
         'menu': menu
     }
-    drop_category()
-    # women_1 = Women.objects.get(pk=1)
-    # women_1.cat = None
-    # women_1.save()
+
+    print('=' * 100)
+    print(Women.objects.filter(cat = 3))
+    # print(Women.objects.all())
+    print('=' * 30)
+    # cat_1 = category.objects.get(pk=1)
+    # wom = Women.objects.filter(cat=cat_1)
+    # wom = Women.objects.all().filter(cat=cat_1)
+    # print(wom)
+    print('=' * 100)
 
     return render(request, 'women/index.html', context=context)
 

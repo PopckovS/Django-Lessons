@@ -1,4 +1,4 @@
-#!/var/www/Django-Lessons/venv/bin/python3.8
+#!/var/www/dgango-1/venv/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
