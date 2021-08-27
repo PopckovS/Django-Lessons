@@ -72,19 +72,10 @@ def get_all_category_models(table=None):
     table = 'women_category' if table is None else table
     models = category.objects.raw(f'SELECT * FROM {table}')
     print('models = ', models)
-    # Тут же можно и использовать функции БД в запросах
-    # models = category.objects.raw(f'SELECT * FROM {table}')
-    id = 1
-    # models = category.objects.raw('SELECT * FROM  women_women WHERE id = %s', [id])
-    # models = category.objects.raw('SELECT * FROM  women_women WHERE id = %(id)s', {'id': id})
-    # models = category.objects.raw("SELECT * FROM %(table)s", {'table': table})
     for model in models:
         print('table = ', table)
         print('model = ', model)
         print('model.__dict__ = ', model.__dict__)
-        # print('model.name = ', model.name)
-        # print('model.pk = ', model.pk)
-        print('=========================')
 
 
 class category(models.Model):
@@ -97,6 +88,9 @@ class category(models.Model):
         в отображение категории в админке.
         """
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'cat_id': self.pk})
 
 
 class Women(models.Model):

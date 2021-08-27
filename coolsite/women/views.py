@@ -17,22 +17,33 @@ menu = [
 def index(request):
     """Главная страница"""
     posts = Women.objects.all()
+    all_category = category.objects.all()
     context = {
         'title': 'Главная страница Women',
         'posts': posts,
-        'menu': menu
+        'menu': menu,
+        'all_category': all_category,
+        'cat_selected': 0
     }
+    return render(request, 'women/index.html', context=context)
 
-    print('=' * 100)
-    print(Women.objects.filter(cat = 3))
-    # print(Women.objects.all())
-    print('=' * 30)
-    # cat_1 = category.objects.get(pk=1)
-    # wom = Women.objects.filter(cat=cat_1)
-    # wom = Women.objects.all().filter(cat=cat_1)
-    # print(wom)
-    print('=' * 100)
 
+def show_category(request, cat_id):
+    """Показать все записи из конкретной категории"""
+    try:
+        category.objects.get(pk=cat_id)
+    except:
+        raise Http404('Такой категории не найдено !')
+
+    posts = Women.objects.filter(cat_id=cat_id)
+    all_category = category.objects.all()
+    context = {
+        'title': 'Статьи по категориям',
+        'menu': menu,
+        'all_category': all_category,
+        'posts': posts,
+        'cat_selected': cat_id
+    }
     return render(request, 'women/index.html', context=context)
 
 
