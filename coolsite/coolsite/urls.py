@@ -21,6 +21,9 @@ from coolsite import settings
 
 from women.views import *
 
+# yasg Для описания API в swagger
+from .yasg import urlpatterns as doc_urls
+
 urlpatterns = [
     # Админ панель сайта
     path('admin/', admin.site.urls),
@@ -28,6 +31,9 @@ urlpatterns = [
     # Приложение women
     # path('women/', include('women.urls')),
     path('', include('women.urls')),
+
+    # приложение для DRF
+    path('drf/', include('drf.urls')),
 
     # Приложение pools
     # path('polls/', include('polls.urls')),
@@ -38,6 +44,8 @@ urlpatterns = [
     # Путь к html-редактору что подключен к админке
     path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
+
+urlpatterns += doc_urls
 
 # Установка директорий для скачивания статических файлов дял dev/prod
 if settings.DEBUG:

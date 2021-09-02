@@ -45,6 +45,11 @@ INSTALLED_APPS = [
     'women.apps.WomenConfig',
     'polls.apps.PollsConfig',
     'python.apps.PythonConfig',
+    'drf.apps.DrfConfig',
+
+    # Подключение DRF для APi
+    'rest_framework',
+    'drf_yasg',
 
     # Подключение html-редактора ckeditor
     'ckeditor',

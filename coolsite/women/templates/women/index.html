@@ -6,16 +6,24 @@
         {% for p in posts %}
 
             <li>
-
+                {# Вывод категории и времени #}
                 <div class="article-panel">
                     <p class="first">Категория: {{ p.cat }}</p>
                     <p class="last">Дата: {{ p.time_update|date:"d-m-Y H:i:s" }}</p>
                 </div>
 
+                {# Вывод картинку на экран #}
+                {% if p.photo %}
+                    <p><img class="img-article-left thumb" src="{{ p.photo.url }}"></p>
+                {% endif %}
+
                 <h2>{{p.title}}</h2>
+
+                {# Текст #}
                 {% autoescape on %}
                     {{p.content|linebreaks|truncatewords:50}}
                 {% endautoescape %}
+
                 <div class="clear"></div>
                 <p class="link-read-post">
 {#                    <a href="{% url 'post' p.pk %}">Читать пост</a>#}
