@@ -30,9 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +42,7 @@ INSTALLED_APPS = [
     # Наши приложения
     'women.apps.WomenConfig',
     'polls.apps.PollsConfig',
+    'store.apps.StoreConfig',
     'python.apps.PythonConfig',
     'drf.apps.DrfConfig',
 
@@ -182,11 +181,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Почта
+# Параметры настройки для почты, сервер SMTP от Yandex
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-# EMAIL_PORT = 587
 EMAIL_HOST_USER = "popckovM10@yandex.ru"
 EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
+
+# Настройки для DRF, для создания пагинации для API по параметрам limit, offset
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 3,
+}

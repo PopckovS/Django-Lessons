@@ -9,7 +9,7 @@ urlpatterns = [
 
     # URL для API системы
     # path('lists', views.PostViewSet.as_view(), name=None),
-    path('lists', views.PostViewSet.as_view, name=None),
+    # path('lists', views.PostViewSet.as_view, name=None),
 
     path('list', views.PostListView.as_view(), name=None),
     path('create', views.PostCreateView.as_view(), name=None),

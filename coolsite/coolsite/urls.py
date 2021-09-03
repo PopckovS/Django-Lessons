@@ -17,12 +17,22 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
+
 from coolsite import settings
 
 from women.views import *
 
 # yasg Для описания API в swagger
 from .yasg import urlpatterns as doc_urls
+
+#
+from rest_framework.routers import SimpleRouter
+from store.views import BookViewSet
+
+
+router = SimpleRouter()
+
+router.register(r'book', BookViewSet)
 
 urlpatterns = [
     # Админ панель сайта
@@ -31,6 +41,8 @@ urlpatterns = [
     # Приложение women
     # path('women/', include('women.urls')),
     path('', include('women.urls')),
+
+    # path('store/', include('store.urls')),
 
     # приложение для DRF
     path('drf/', include('drf.urls')),
@@ -46,6 +58,8 @@ urlpatterns = [
 ]
 
 urlpatterns += doc_urls
+
+urlpatterns += router.urls
 
 # Установка директорий для скачивания статических файлов дял dev/prod
 if settings.DEBUG:

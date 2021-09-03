@@ -10,16 +10,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 
 
-# Эксперимент по фильтрации
-class PostViewSet(ModelViewSet):
-    queryset = Post.objects.all()
-    serializer_class = serializers.PostSerializer
-
-    filter_backends = [DjangoFilterBackend, SearchFilter]
-    filter_fields = ['title']
-    search_fields = ['title']
-
-
 class PostListView(generics.ListAPIView):
     """API GET лучение всех данных"""
     queryset = Post.objects.all()
@@ -38,11 +28,6 @@ class PostCreateView(generics.CreateAPIView):
             "message": "Successfully created",
             "result": request.data
         }
-
-        # print('='*100)
-        # print(response)
-        # print('='*100)
-
         return Response(response)
 
 
@@ -51,11 +36,20 @@ class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.PostSerializer
 
     def retrieve(self, request, *args, **kwargs):
-        """Получить обьект"""
+        """Получить обьект по его id"""
         super(PostDetailView, self).retrieve(request, args, kwargs)
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         data = serializer.data
+
+        # print('='*200)
+        # print('instance : ', instance)
+        # print('='*100)
+        # print('serializer : ', serializer)
+        # print('='*100)
+        # print('serializer.data : ', serializer.data)
+        # print('='*200)
+
         response = {"status_code": status.HTTP_200_OK,
                     "message": "Successfully retrieved",
                     "result": data}
@@ -78,30 +72,6 @@ class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
         response = {"status_code": status.HTTP_200_OK,
                     "message": "Successfully deleted"}
         return Response(response)
-
-
-
-
-
-
-
-
-
-
-
-
-
-# generics.ListAPIView   - Для получения
-# generics.CreateAPIView - Для создания
-
-# Делаем запрос к ORM модели, эти поля и будут сериализованы
-# queryset = Post.objects.all()
-#
-# Указываем класс который будет указывать как надо будет сериализовать
-# serializer_class = serializers.PostSerializer
-
-
-
 
 
 
