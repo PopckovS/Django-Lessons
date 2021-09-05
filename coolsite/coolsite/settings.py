@@ -191,6 +191,30 @@ EMAIL_USE_SSL = True
 
 # Настройки для DRF, для создания пагинации для API по параметрам limit, offset
 REST_FRAMEWORK = {
+    # Настройки для Пагинации
     'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 3,
+    'PAGE_SIZE': 100,
+
+    # Настройки для того как и в каком виде будут показаны данные
+    # на странице API системы, при таких настройках это голый JSON
+    # Без красивого вывода. Все зависит от того используем мы фильтрацию
+    # или нет, если используем то юзаем эти настрйоки.
+
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.JSONRenderer',
+    # ),
+    # 'DEFAULT_PARSER_CLASSES': (
+    #     'rest_framework.parsers.JSONParser',
+    # )
+
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.JSONRenderer',
+    #     'rest_framework.renderers.BrowsableAPIRenderer',
+    # ),
+    # 'DEFAULT_PARSER_CLASSES': (
+    #     'rest_framework.parsers.JSONParser',
+    #     'rest_framework.parsers.FormParser',
+    #     'rest_framework.parsers.MultiPartParser'
+    # )
 }
+

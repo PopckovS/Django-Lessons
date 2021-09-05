@@ -57,8 +57,10 @@ urlpatterns = [
     path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
+# Для Swagger
 urlpatterns += doc_urls
 
+# Для book
 urlpatterns += router.urls
 
 # Установка директорий для скачивания статических файлов дял dev/prod
