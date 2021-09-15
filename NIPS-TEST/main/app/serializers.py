@@ -1,0 +1,9 @@
+from rest_framework.serializers import ModelSerializer
+from .models import Images
+
+
+class ImagesSerializer(ModelSerializer):
+    """Сериализатор CRUD операций к модели Images"""
+    class Meta:
+        model = Images
+        fields = ['id', 'name', 'type', 'big_image']

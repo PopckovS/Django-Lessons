@@ -25,3 +25,18 @@ Django-Lessons
 [Django-extensions](https://django-extensions.readthedocs.io/en/stable/index.html) - полезный функции для работы 
 
 [Django-adminactions](https://django-adminactions.readthedocs.io/en/latest/) - Экспорт данных из админки в XSL, CSV, Fixture. 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+

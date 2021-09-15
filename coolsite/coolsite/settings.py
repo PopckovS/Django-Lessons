@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
 
+    # Модуль для создания мини изображений
+    # 'sorl.thumbnail',
+
     # Подключение html-редактора ckeditor
     'ckeditor',
     'ckeditor_uploader',
@@ -192,7 +195,7 @@ EMAIL_USE_SSL = True
 # Настройки для DRF, для создания пагинации для API по параметрам limit, offset
 REST_FRAMEWORK = {
     # Настройки для Пагинации
-    'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
 
     # Настройки для того как и в каком виде будут показаны данные
